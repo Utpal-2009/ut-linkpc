@@ -1,37 +1,320 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Utpal | Intro Website</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utpal | Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+            color: #00ff41;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #00ff41;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wave {
+            display: inline-block;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-20deg); }
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #0ef;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline {
+            color: #888;
+            font-size: 0.9em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #00ff41;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 30px rgba(0, 255, 65, 0.4);
+        }
+
+        h2 {
+            color: #0ef;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #0ef;
+            border-bottom: 2px solid #00ff41;
+            padding-bottom: 10px;
+        }
+
+        h2::before {
+            content: '> ';
+            color: #00ff41;
+        }
+
+        .about-text {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid #00ff41;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+            background: rgba(0, 255, 65, 0.2);
+        }
+
+        .skill-title {
+            font-size: 1.2em;
+            color: #0ef;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-title::before {
+            content: '✔';
+            margin-right: 10px;
+            color: #00ff41;
+            font-size: 1.2em;
+        }
+
+        .skill-level {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-item {
+            background: rgba(0, 239, 255, 0.1);
+            border: 1px solid #0ef;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 0 20px rgba(0, 239, 255, 0.5);
+            background: rgba(0, 239, 255, 0.2);
+        }
+
+        .contact-label {
+            font-size: 1.5em;
+            color: #0ef;
+            margin-bottom: 10px;
+        }
+
+        .contact-value {
+            color: #00ff41;
+            word-break: break-all;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            border-top: 1px solid #00ff41;
+            margin-top: 40px;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #00ff41;
+            animation: blink 1s step-end infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .goal-box {
+            background: rgba(0, 239, 255, 0.1);
+            border-left: 4px solid #0ef;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .skills-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-<body style="font-family: Arial; text-align:center; margin-top:60px;">
+<body>
+    <div class="container">
+        <header>
+            <h1>Hello, I'm Utpal <span class="wave">👋</span></h1>
+            <p class="subtitle">Diploma IT Student | Beginner Developer</p>
+            <p class="tagline">Building the future, one line of code at a time<span class="terminal-cursor"></span></p>
+        </header>
 
-    <h1>Hello, I'm Utpal 👋</h1>
-    <p>Diploma IT Student | Beginner Developer</p>
+        <section class="section">
+            <h2>About Me</h2>
+            <p class="about-text">
+                I am Utpal, a Diploma IT Engineering student with a strong passion for technology and software development. 
+                I'm on an exciting journey learning web development, programming, and practical IT skills step by step.
+            </p>
+            <div class="goal-box">
+                <strong style="color: #0ef;">Future Goal:</strong> 
+                <span style="color: #ccc;">Build a career in IT and launch my own technology-based company.</span>
+            </div>
+        </section>
 
-    <hr style="width:50%;">
+        <section class="section">
+            <h2>Skills & Learning</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-title">HTML & CSS</div>
+                    <div class="skill-level">Basics | Building layouts & styling</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">JavaScript</div>
+                    <div class="skill-level">Beginner | Adding interactivity</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Python</div>
+                    <div class="skill-level">Basics | Scripting & automation</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Android Development</div>
+                    <div class="skill-level">Learning | Mobile app creation</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Web Development</div>
+                    <div class="skill-level">In Progress | Full-stack journey</div>
+                </div>
+            </div>
+        </section>
 
-    <h2>About Me</h2>
-    <p>
-        I am Utpal, a Diploma IT Engineering student with a strong interest in technology
-        and software development. I am currently learning web development, programming,
-        and practical IT skills step by step. My goal is to build a career in IT and
-        start my own technology-based company in the future.
-    </p>
+        <section class="section">
+            <h2>Contact</h2>
+            <div class="contact-grid">
+                <a href="mailto:successmr65@gmail.com" class="contact-item">
+                    <div class="contact-label">📧 Email</div>
+                    <div class="contact-value">successmr65@gmail.com</div>
+                </a>
+                <a href="http://ut.linkpc.net" target="_blank" class="contact-item">
+                    <div class="contact-label">🌐 Website</div>
+                    <div class="contact-value">ut.linkpc.net</div>
+                </a>
+            </div>
+        </section>
 
-    <h2>Skills & Learning</h2>
-    <ul style="list-style:none;">
-        <li>✔ HTML & CSS (Basics)</li>
-        <li>✔ JavaScript (Beginner)</li>
-        <li>✔ Python (Basics)</li>
-        <li>✔ Android & Web Development</li>
-    </ul>
-
-    <h2>Contact</h2>
-    <p>
-        📧 Email: successmr65@gmail.com <br>
-        🌐 Domain: ut.linkpc.net
-    </p>
-
+        <footer>
+            <p>© 2024 Utpal | Powered by passion for technology</p>
+            <p style="margin-top: 10px; color: #00ff41;">&lt;/&gt; Coded with dedication</p>
+        </footer>
+    </div>
 </body>
 </html>
